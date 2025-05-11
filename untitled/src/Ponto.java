@@ -1,25 +1,25 @@
 public class Ponto {
-    private int xPosicao;
-    private int yPosicao;
+    private int posicaoX;
+    private int posicaoY;
 
-    public Ponto(int xPosicao, int yPosicao) {
-        this.xPosicao = xPosicao;
-        this.yPosicao = yPosicao;
+    public Ponto(int xPosicao, int posicaoY) {
+        this.posicaoX = xPosicao;
+        this.posicaoY = posicaoY;
     }
 
-    public int getxPosicao() {
-        return xPosicao;
+    public int getPosicaoX() {
+        return posicaoX;
     }
 
-    public void setxPosicao(int xPosicao) {
-        this.xPosicao = xPosicao;
+    public void setPosicaoX(int posicaoX) {
+        this.posicaoX = posicaoX;
     }
 
-    public int getyPosicao() {
-        return yPosicao;
+    public int getPosicaoY() {
+        return posicaoY;
     }
 
-    public void setyPosicao(int yPosicao) {
-        this.yPosicao = yPosicao;
+    public void setPosicaoY(int posicaoY) {
+        this.posicaoY = posicaoY;
     }
 }
