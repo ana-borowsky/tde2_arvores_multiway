@@ -1,5 +1,27 @@
-public class Main{
+import java.util.Random;
+import javax.swing.*;
+public class Main {
     public static void main(String[] args) {
-        //todo fazer um meio com que o usuario possa interagir com o grafico.
+        SwingUtilities.invokeLater(() -> {
+            JFrame grafico = new JFrame("Plot da Arvore quad");
+            grafico.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            grafico.setSize(500, 500);
+
+            Quadrante area = new Quadrante(0, 0, 200, 200);
+            Node node = new Node(area, 3);
+
+            Random random = new Random();
+            for (int i = 0; i < 20; i++) {
+                Ponto ponto = new Ponto(
+                        random.nextInt() * 500 - 250,
+                        random.nextInt() * 500 - 250
+                );
+                node.insere(ponto);
+            }
+
+            Grafico draw = new Grafico(node);
+            grafico.add(draw);
+            grafico.setVisible(true);
+        });
     }
 }
