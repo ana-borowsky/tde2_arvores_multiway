@@ -51,10 +51,10 @@ public class Grafico extends JPanel {
             }
         }
         if (node.isDividido()) {
-            desenhaArvore(graphics2D, node.getNorteOeste());
-            desenhaArvore(graphics2D, node.getNorteLeste());
-            desenhaArvore(graphics2D, node.getSulOeste());
-            desenhaArvore(graphics2D, node.getSulLeste());
+            desenhaArvore(graphics2D, node.getNoroeste());
+            desenhaArvore(graphics2D, node.getNordeste());
+            desenhaArvore(graphics2D, node.getSudoeste());
+            desenhaArvore(graphics2D, node.getSudeste());
         }
     }
 
