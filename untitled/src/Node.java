@@ -12,24 +12,18 @@ public class Node {
     public Node(Quadrante area, int capacidade) {
         this.area = area;
         this.capacidade = capacidade;
-        pontos = new Ponto[capacidade];
-        norteLeste = null;
-        norteOeste = null;
-        sulLeste = null;
-        sulOeste = null;
-        dividido = false;
-        numeroDePontos = 0;
+        this.pontos = new Ponto[capacidade];
+        this.dividido = false;
+        this.numeroDePontos = 0;
     }
 
-
     public void dividir() {
-        float x = area.getPosicaoX();
-        float y = area.getPosicaoY();
-        float altura = area.getAltura();
-        float largura = area.getLargura();
-
-        float novaLargura = largura/2;
-        float novaAltura = altura/2;
+        int x = area.getPosicaoX();
+        int y = area.getPosicaoY();
+        int altura = area.getAltura();
+        int largura = area.getLargura();
+        int novaLargura = largura / 2;
+        int novaAltura = altura / 2;
 
         Quadrante no = new Quadrante(x - novaLargura, y + novaAltura, novaLargura, novaAltura);
         Quadrante nl = new Quadrante(x + novaLargura, y + novaAltura, novaLargura, novaAltura);
@@ -45,47 +39,38 @@ public class Node {
     }
 
     public boolean insere(Ponto ponto) {
-        if (!area.contem(ponto)){
+        if (!area.contem(ponto)) {
             return false;
         }
 
         if (numeroDePontos < capacidade && !dividido) {
-            pontos[numeroDePontos] = ponto;
-            numeroDePontos++;
+            pontos[numeroDePontos++] = ponto;
             return true;
-        }else{
-            dividir();
-            for (int i = 0; i < capacidade; i++) {
-                Ponto p = pontos[i];
-                if(norteLeste.area.contem(p)) {
-                    norteLeste.insere(p);
-                }
-                if(norteOeste.area.contem(p)) {
-                    norteOeste.insere(p);
+        }
 
+        if (!dividido) {
+            dividir();
+            for (int i = 0; i < numeroDePontos; i++) {
+                Ponto p = pontos[i];
+                if (norteOeste.area.contem(p)) {
+                    norteOeste.insere(p);
                 } else if (norteLeste.area.contem(p)) {
                     norteLeste.insere(p);
-
                 } else if (sulOeste.area.contem(p)) {
                     sulOeste.insere(p);
-
                 } else {
                     sulLeste.insere(p);
                 }
             }
-            dividido = true;
             pontos = null;
         }
 
-        if(norteLeste.area.contem(ponto)){
-            return norteLeste.insere(ponto);
-
-        }else if(norteOeste.area.contem(ponto)){
+        if (norteOeste.area.contem(ponto)) {
             return norteOeste.insere(ponto);
-
-        }else if(sulOeste.area.contem(ponto)){
+        } else if (norteLeste.area.contem(ponto)) {
+            return norteLeste.insere(ponto);
+        } else if (sulOeste.area.contem(ponto)) {
             return sulOeste.insere(ponto);
-
         } else {
             return sulLeste.insere(ponto);
         }

@@ -1,10 +1,10 @@
 public class Quadrante {
-    private float posicaoX;
-    private float posicaoY;
-    private float largura;
-    private float altura;
+    private int posicaoX;
+    private int posicaoY;
+    private int largura;
+    private int altura;
 
-    public Quadrante(float posicaoX, float posicaoY, float largura, float altura) {
+    public Quadrante(int posicaoX, int posicaoY, int largura, int altura) {
         this.posicaoX = posicaoX;
         this.posicaoY = posicaoY;
         this.largura = largura;
@@ -27,19 +27,19 @@ public class Quadrante {
         return true;
     }
 
-    public float getPosicaoX() {
+    public int getPosicaoX() {
         return posicaoX;
     }
 
-    public float getPosicaoY() {
+    public int getPosicaoY() {
         return posicaoY;
     }
 
-    public float getLargura() {
+    public int getLargura() {
         return largura;
     }
 
-    public float getAltura() {
+    public int getAltura() {
         return altura;
     }
 }
