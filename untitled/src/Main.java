@@ -3,7 +3,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame grafico = new JFrame("Plot da Arvore quad");
+            JFrame grafico = new JFrame("Plotagem da arvore quad");
             grafico.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             grafico.setSize(500, 500);
 
@@ -19,8 +19,8 @@ public class Main {
                 node.insere(ponto);
             }
 
-            Grafico draw = new Grafico(node);
-            grafico.add(draw);
+            Grafico desenho = new Grafico(node);
+            grafico.add(desenho);
             grafico.setVisible(true);
         });
     }

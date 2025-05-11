@@ -4,10 +4,10 @@ public class Node {
     private boolean dividido;
     private Ponto[] pontos;
     private Quadrante area;
-    private Node norteOeste;
-    private Node norteLeste;
-    private Node sulOeste;
-    private Node sulLeste;
+    private Node noroeste;
+    private Node nordeste;
+    private Node sudoeste;
+    private Node sudeste;
 
     public Node(Quadrante area, int capacidade) {
         this.area = area;
@@ -26,14 +26,14 @@ public class Node {
         int novaAltura = altura / 2;
 
         Quadrante no = new Quadrante(x - novaLargura, y + novaAltura, novaLargura, novaAltura);
-        Quadrante nl = new Quadrante(x + novaLargura, y + novaAltura, novaLargura, novaAltura);
+        Quadrante ne = new Quadrante(x + novaLargura, y + novaAltura, novaLargura, novaAltura);
         Quadrante so = new Quadrante(x - novaLargura, y - novaAltura, novaLargura, novaAltura);
-        Quadrante sl = new Quadrante(x + novaLargura, y - novaAltura, novaLargura, novaAltura);
+        Quadrante se = new Quadrante(x + novaLargura, y - novaAltura, novaLargura, novaAltura);
 
-        norteOeste = new Node(no, capacidade);
-        norteLeste = new Node(nl, capacidade);
-        sulOeste = new Node(so, capacidade);
-        sulLeste = new Node(sl, capacidade);
+        noroeste = new Node(no, capacidade);
+        nordeste = new Node(ne, capacidade);
+        sudoeste = new Node(so, capacidade);
+        sudeste = new Node(se, capacidade);
 
         dividido = true;
     }
@@ -52,27 +52,27 @@ public class Node {
             dividir();
             for (int i = 0; i < numeroDePontos; i++) {
                 Ponto p = pontos[i];
-                if (norteOeste.area.contem(p)) {
-                    norteOeste.insere(p);
-                } else if (norteLeste.area.contem(p)) {
-                    norteLeste.insere(p);
-                } else if (sulOeste.area.contem(p)) {
-                    sulOeste.insere(p);
+                if (noroeste.area.contem(p)) {
+                	noroeste.insere(p);
+                } else if (nordeste.area.contem(p)) {
+                	nordeste.insere(p);
+                } else if (sudoeste.area.contem(p)) {
+                	sudoeste.insere(p);
                 } else {
-                    sulLeste.insere(p);
+                	sudeste.insere(p);
                 }
             }
             pontos = null;
         }
 
-        if (norteOeste.area.contem(ponto)) {
-            return norteOeste.insere(ponto);
-        } else if (norteLeste.area.contem(ponto)) {
-            return norteLeste.insere(ponto);
-        } else if (sulOeste.area.contem(ponto)) {
-            return sulOeste.insere(ponto);
+        if (noroeste.area.contem(ponto)) {
+            return noroeste.insere(ponto);
+        } else if (nordeste.area.contem(ponto)) {
+            return nordeste.insere(ponto);
+        } else if (sudoeste.area.contem(ponto)) {
+            return sudoeste.insere(ponto);
         } else {
-            return sulLeste.insere(ponto);
+            return sudeste.insere(ponto);
         }
     }
 
@@ -96,19 +96,19 @@ public class Node {
         return area;
     }
 
-    public Node getNorteOeste() {
-        return norteOeste;
+    public Node getNoroeste() {
+        return noroeste;
     }
 
-    public Node getNorteLeste() {
-        return norteLeste;
+    public Node getNordeste() {
+        return nordeste;
     }
 
-    public Node getSulOeste() {
-        return sulOeste;
+    public Node getSudoeste() {
+        return sudoeste;
     }
 
-    public Node getSulLeste() {
-        return sulLeste;
+    public Node getSudeste() {
+        return sudeste;
     }
 }
