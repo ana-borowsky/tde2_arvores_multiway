@@ -12,10 +12,10 @@ public class Main {
 
             Random random = new Random();
             for (int i = 0; i < 20; i++) {
-                Ponto ponto = new Ponto(
-                        random.nextInt() * 500 - 250,
-                        random.nextInt() * 500 - 250
-                );
+            	Ponto ponto = new Ponto(
+            		    random.nextInt(400) - 200,
+            		    random.nextInt(400) - 200
+            		);
                 node.insere(ponto);
             }
 
