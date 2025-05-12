@@ -76,6 +76,39 @@ public class Node {
         }
     }
 
+    public boolean remove(Node node, Ponto ponto) {
+        if( node == null || ponto == null || area == null){
+            return false;
+        }
+        if (!node.area.contem(ponto)) {
+            return false;
+        }
+
+        if (!dividido && area.contem(ponto)) {
+            Ponto[] pontosAtualizados = pontos;
+            node.pontos = new Ponto[capacidade];
+            numeroDePontos = 0;
+            for( Ponto p: pontosAtualizados) {
+                if (p != null && p != ponto) {
+                    node.pontos[numeroDePontos] = p;
+                }
+            }
+            return true;
+        }
+        if(dividido){
+            if (node.noroeste != null && node.noroeste.area.contem(ponto)) {
+                return node.remove(node.noroeste, ponto);
+            } else if (node.nordeste != null && node.nordeste.area.contem(ponto)) {
+                return node.remove(node.nordeste, ponto);
+            } else if (node.sudoeste != null && node.sudoeste.area.contem(ponto)){
+                return node.remove(node.sudoeste, ponto);
+            }else if (node.sudeste != null && node.sudeste.area.contem(ponto)){
+                return  node.remove(node.sudeste, ponto);
+            }
+        }
+        return false;
+    }
+
     public int getCapacidade() {
         return capacidade;
     }
