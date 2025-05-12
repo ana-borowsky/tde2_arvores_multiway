@@ -77,35 +77,52 @@ public class Node {
     }
 
     public boolean remove(Node node, Ponto ponto) {
-        if( node == null || ponto == null || area == null){
+        if (node == null || ponto == null || node.area == null) {
             return false;
         }
         if (!node.area.contem(ponto)) {
             return false;
         }
 
-        if (!dividido && area.contem(ponto)) {
-            Ponto[] pontosAtualizados = pontos;
+        if (!node.dividido) {
+            boolean encontrado = false;
+            Ponto[] pontosAtualizados = node.pontos;
             node.pontos = new Ponto[capacidade];
-            numeroDePontos = 0;
-            for( Ponto p: pontosAtualizados) {
+            node.numeroDePontos = 0;
+
+            for (Ponto p : pontosAtualizados) {
                 if (p != null && p != ponto) {
-                    node.pontos[numeroDePontos] = p;
+                    node.pontos[node.numeroDePontos] = p;
+                    node.numeroDePontos++;
+                    
+                } else if (p != null && p == ponto) {
+                    encontrado = true;
                 }
             }
-            return true;
+            return encontrado;
         }
-        if(dividido){
+
+        if (node.dividido) {
+            boolean removido = false;
+
             if (node.noroeste != null && node.noroeste.area.contem(ponto)) {
-                return node.remove(node.noroeste, ponto);
-            } else if (node.nordeste != null && node.nordeste.area.contem(ponto)) {
-                return node.remove(node.nordeste, ponto);
-            } else if (node.sudoeste != null && node.sudoeste.area.contem(ponto)){
-                return node.remove(node.sudoeste, ponto);
-            }else if (node.sudeste != null && node.sudeste.area.contem(ponto)){
-                return  node.remove(node.sudeste, ponto);
+                removido = this.remove(node.noroeste, ponto);
+                if (removido) return true;
+            }
+            if (node.nordeste != null && node.nordeste.area.contem(ponto)) {
+                removido = this.remove(node.nordeste, ponto);
+                if (removido) return true;
+            }
+            if (node.sudoeste != null && node.sudoeste.area.contem(ponto)) {
+                removido = this.remove(node.sudoeste, ponto);
+                if (removido) return true;
+            }
+            if (node.sudeste != null && node.sudeste.area.contem(ponto)) {
+                removido = this.remove(node.sudeste, ponto);
+                if (removido) return true;
             }
         }
+
         return false;
     }
 
