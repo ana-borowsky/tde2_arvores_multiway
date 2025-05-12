@@ -7,7 +7,7 @@ public class Ponto {
         this.posicaoY = posicaoY;
     }
 
-    public double getPosicaoX() {
+    public int getPosicaoX() {
         return posicaoX;
     }
 
@@ -15,7 +15,7 @@ public class Ponto {
         this.posicaoX = posicaoX;
     }
 
-    public double getPosicaoY() {
+    public int getPosicaoY() {
         return posicaoY;
     }
 
