@@ -11,20 +11,18 @@ public class Main {
             Node node = new Node(area, 3);
 
             Random random = new Random();
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 70; i++) {
             	Ponto ponto = new Ponto(
             		    random.nextInt(400) - 200,
             		    random.nextInt(400) - 200
             		);
-                System.out.println(ponto.getPosicaoX());
-                System.out.println(ponto.getPosicaoY() + "\n");
                 node.insere(ponto);
             }
             Ponto ponto = new Ponto( 4, 4);
             node.insere(ponto);
-//            System.out.println(ponto.getPosicaoX());
-//            System.out.println(ponto.getPosicaoY() + "\n");
-//            node.remove(node, ponto);
+           System.out.println(ponto.getPosicaoX());
+           System.out.println(ponto.getPosicaoY() + "\n");
+            // node.remove(node, ponto);
 
 
             Grafico desenho = new Grafico(node);
